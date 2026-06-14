@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Attendance Admin Panel</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginBox" class="login-card">
+
+  <h4 class="login-title">Admin Login</h4>
+
+  <!-- LOGO / HEADER IMAGE -->
+  <div class="login-header">
+    <img src="assets/login.png" alt="Login Header">
+  </div>
+
+  <!-- LOGIN FORM -->
+  <div class="login-form">
+    <input id="user" placeholder="Username" autofocus>
+    <input id="pass" type="password" placeholder="Password">
+    <button onclick="login()">Log In</button>
+  </div>
+
+</div>
+
+
+  
+
+<!-- ADMIN PANEL -->
+<div id="panel" class="hide">
+
+  <div class="admin-wrapper">
+
+    <!-- ===== TOP HEADER ===== -->
+    <header class="admin-header">
+      <div class="logo">
+        <img src="assets/header.png" alt="Header">
+      </div>
+    </header>
+
+    <!-- ===== BODY ===== -->
+    <div class="admin-body">
+
+      <!-- ===== SIDEBAR ===== -->
+      <aside class="admin-sidebar">
+        <button onclick="goHome()">🏠 Home</button>
+        <button onclick="showCreateClass()">🏫 Create Class</button>
+        <button onclick="showCreateStudent()">👨‍🎓 Create Student</button>
+        <button onclick="showAttendance()">📋 Attendance</button>
+      </aside>
+
+      <!-- ===== MAIN CONTENT ===== -->
+      <main class="admin-content" id="content"></main>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- POPUP MESSAGE -->
+<div id="popup" class="popup hide">
+  <div class="popup-box">
+    <p id="popupMsg"></p>
+    <button type="button" onclick="closePopup()">OK</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

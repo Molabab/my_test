@@ -1,0 +1,11 @@
+attendance-system/
+│
+├── index.html
+├── student.html
+├── style.css
+├── script.js
+│
+└── assets/
+    ├── login.png
+    ├── header.png
+    └── student.png

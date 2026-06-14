@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Attendance Details</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="header">
+  <div class="header-overlay">
+    <div class="header-text">
+      Attendance Report
+    </div>
+  </div>
+</div>
+
+
+<div class="box">
+
+  <!-- ===== STUDENT SUMMARY (GRID) ===== -->
+  <div id="summary" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+    <!-- filled by JS -->
+  </div>
+
+  <hr>
+
+  <!-- ===== ATTENDANCE TABLE ===== -->
+  <h3>Attendance History (Date Wise)</h3>
+
+  <table border="1" width="100%" id="attTable">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Check In</th>
+        <th>Check Out</th>
+        <th>Daily Total</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+    <tfoot>
+      <tr style="font-weight:bold;background:#f1f5f9;">
+        <td colspan="3">Grand Total</td>
+        <td id="grandTotal">00:00</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <br>
+  <button class="export-btn" onclick="exportStudent()">⬇ Download Attendance (Excel)</button>
+
+</div>
+
+<script>
+let db = JSON.parse(localStorage.getItem("DB"));
+let reg = localStorage.getItem("VIEW");
+let s = db.students.find(x => x.reg === reg);
+
+// ===== SUMMARY SECTION =====
+document.getElementById("summary").innerHTML = `
+  <div><b>Name:</b> ${s.name}</div>
+  <div><b>Reg No:</b> ${s.reg}</div>
+  <div><b>Mobile:</b> ${s.mobile}</div>
+  <div><b>Class / Program:</b> ${s.class}</div>
+`;
+
+// ===== ATTENDANCE TABLE =====
+let tbody = document.querySelector("#attTable tbody");
+let grandMinutes = 0;
+
+db.attendance
+  .filter(a => a.reg === reg)
+  .forEach(a => {
+
+    let dailyMin = 0;
+    if(a.out){
+      let t1 = new Date("1970-01-01 " + a.in);
+      let t2 = new Date("1970-01-01 " + a.out);
+      dailyMin = Math.floor((t2 - t1) / 60000);
+      grandMinutes += dailyMin;
+    }
+
+    let tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${a.date}</td>
+      <td>${a.in}</td>
+      <td>${a.out || "--"}</td>
+      <td>${formatTime(dailyMin)}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+// ===== GRAND TOTAL =====
+document.getElementById("grandTotal").innerText = formatTime(grandMinutes);
+
+// ===== EXPORT TO EXCEL =====
+function exportStudent(){
+  let csv = "Date,Check In,Check Out,Daily Total\n";
+
+  db.attendance
+    .filter(a => a.reg === reg)
+    .forEach(a => {
+      let min = 0;
+      if(a.out){
+        let t1 = new Date("1970-01-01 " + a.in);
+        let t2 = new Date("1970-01-01 " + a.out);
+        min = Math.floor((t2 - t1) / 60000);
+      }
+      csv += `${a.date},${a.in},${a.out || ""},${formatTime(min)}\n`;
+    });
+
+  csv += `\nGrand Total,,,${formatTime(grandMinutes)}\n`;
+
+  let blob = new Blob([csv], { type: "text/csv" });
+  let url = URL.createObjectURL(blob);
+  let a = document.createElement("a");
+  a.href = url;
+  a.download = reg + "_attendance.csv";
+  a.click();
+}
+
+// ===== TIME FORMAT =====
+function formatTime(min){
+  let h = Math.floor(min / 60);
+  let m = min % 60;
+  return String(h).padStart(2,"0") + ":" + String(m).padStart(2,"0");
+}
+</script>
+
+</body>
+</html>

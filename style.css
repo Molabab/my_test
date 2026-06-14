@@ -1,0 +1,383 @@
+/* ========== BASE ========== */
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  background:#f1f5f9;
+  padding:20px;
+  margin:0;
+}
+
+/* ========== HEADER IMAGE ========== */
+.headerImg{
+  width:100%;
+  max-height:120px;
+  object-fit:cover;
+  margin-bottom:12px;
+  border-radius:6px;
+}
+
+/* ========== INPUTS & BUTTONS ========== */
+input, select{
+  padding:8px 10px;
+  margin:5px;
+  border:1px solid #cbd5e1;
+  border-radius:4px;
+}
+
+input:focus, select:focus{
+  outline:none;
+  border-color:#2563eb;
+}
+
+button{
+  padding:8px 14px;
+  margin:5px;
+  border:none;
+  border-radius:4px;
+  cursor:pointer;
+  background:#2563eb;
+  color:white;
+  font-size:14px;
+}
+
+button:hover{
+  background:#1e40af;
+}
+
+button.danger{
+  background:#dc2626;
+}
+button.danger:hover{
+  background:#b91c1c;
+}
+
+/* ========== TOP MENU ========== */
+.menu{
+  margin-bottom:10px;
+}
+.menu button{
+  background:#1e40af;
+  color:white;
+  border:none;
+  border-radius:4px;
+  margin-right:5px;
+}
+
+/* ========== CARD / BOX ========== */
+.box{
+  background:white;
+  padding:16px;
+  margin-top:12px;
+  border-radius:8px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* ========== LIST ROW ========== */
+.row{
+  border-bottom:1px solid #e5e7eb;
+  padding:10px 6px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+/* ========== TABLE (IMPORTANT) ========== */
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+  font-size:14px;
+}
+
+table th{
+  background:#1e40af;
+  color:white;
+  padding:10px;
+  text-align:center;
+}
+
+table td{
+  padding:8px;
+  border-bottom:1px solid #e5e7eb;
+  text-align:center;
+}
+
+table tr:nth-child(even){
+  background:#f8fafc;
+}
+
+/* ========== EXPORT BUTTON ========== */
+.export-btn{
+  background:#16a34a;
+}
+.export-btn:hover{
+  background:#15803d;
+}
+
+/* ========== POPUP ========== */
+.popup{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.45);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+
+.popup-box{
+  background:white;
+  padding:20px 25px;
+  border-radius:8px;
+  text-align:center;
+  min-width:260px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* ========== HIDE ========== */
+.hide{
+  display:none !important;
+}
+/* ===== HEADER WITH SAME IMAGE + TITLE ===== */
+.header{
+  width:100%;
+  height:180px;
+  background:url("assets/student.png") no-repeat center center;
+  background-size:cover;
+  border-radius:10px;
+  margin-bottom:15px;
+  position:relative;
+  overflow:hidden;
+}
+
+.header-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.header-text{
+  color:#fff;
+  font-size:30px;
+  font-weight:bold;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media(max-width:600px){
+  .header{
+    height:130px;
+  }
+  .header-text{
+    font-size:20px;
+  }
+}
+/* ===== LOGIN HEADER IMAGE WRAPPER ===== */
+.login-header{
+  width:100%;
+  height:200px;              /* desktop height */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  border-radius:10px;
+  margin-bottom:15px;
+}
+
+/* image inside header */
+.login-header img{
+  width:100%;
+  height:100%;
+  object-fit:contain;        /* image full dikhe, cut na ho */
+}
+
+/* ===== RESPONSIVE FIX ===== */
+@media(max-width:768px){
+  .login-header{
+    height:150px;
+  }
+}
+
+@media(max-width:480px){
+  .login-header{
+    height:120px;
+  }
+}
+/* ===== COMMON PAGE HEADER (header.png) ===== */
+.page-header{
+  width:100%;
+  height:220px;              /* desktop height */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  border-radius:10px;
+  margin-bottom:15px;
+  background:#f1f5f9;
+}
+
+.page-header img{
+  width:100%;
+  height:100%;
+  object-fit:cover;          /* full width banner look */
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .page-header{
+    height:160px;
+  }
+}
+
+@media(max-width:480px){
+  .page-header{
+    height:120px;
+  }
+}
+/* ===== LOGIN CARD ===== */
+.login-card{
+  max-width:420px;
+  margin:80px auto;
+  background:#ffffff;
+  border-radius:10px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+  overflow:hidden;
+}
+
+/* ===== LOGIN TITLE ===== */
+.login-title{
+  margin:0;
+  text-align:center;
+  background:#dc2626;        /* red header like your example */
+  color:white;
+  padding:14px;
+  font-size:20px;
+}
+
+/* ===== LOGIN HEADER IMAGE ===== */
+.login-header{
+  width:100%;
+  height:150px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#f8fafc;
+}
+
+.login-header img{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+}
+
+/* ===== FORM AREA ===== */
+.login-form{
+  padding:25px;
+}
+
+.login-form input{
+  width:100%;
+  padding:12px;
+  margin-bottom:15px;
+  border:1px solid #cbd5e1;
+  border-radius:6px;
+  font-size:15px;
+}
+
+.login-form button{
+  width:100%;
+  padding:12px;
+  background:#0ea5e9;       /* blue login button */
+  color:white;
+  border:none;
+  border-radius:6px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.login-form button:hover{
+  background:#0284c7;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:480px){
+  .login-card{
+    margin:40px 10px;
+  }
+  .login-header{
+    height:120px;
+  }
+}
+/* ===== ADMIN DASHBOARD LAYOUT ===== */
+.admin-wrapper{
+  min-height:100vh;
+  background:#f1f5f9;
+}
+
+/* TOP HEADER */
+.admin-header{
+  background:#0f172a;
+  padding:10px 20px;
+}
+.admin-header img{
+  height:60px;
+  width:auto;
+}
+
+/* BODY */
+.admin-body{
+  display:flex;
+}
+
+/* SIDEBAR */
+.admin-sidebar{
+  width:220px;
+  background:#1e293b;
+  min-height:calc(100vh - 80px);
+  padding:15px 10px;
+}
+
+.admin-sidebar button{
+  width:100%;
+  margin-bottom:10px;
+  background:none;
+  border:none;
+  color:#fff;
+  padding:10px;
+  text-align:left;
+  border-radius:6px;
+  cursor:pointer;
+}
+.admin-sidebar button:hover{
+  background:#334155;
+}
+
+/* CONTENT */
+.admin-content{
+  flex:1;
+  padding:20px;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .admin-body{
+    flex-direction:column;
+  }
+  .admin-sidebar{
+    width:100%;
+    display:flex;
+    justify-content:space-around;
+  }
+  .admin-sidebar button{
+    width:auto;
+  }
+}
+
+
+
